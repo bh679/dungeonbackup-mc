@@ -1,0 +1,112 @@
+// Dungeon Backup — player-data protection library + UI for NeoForge 1.21.1 mods.
+// Extracted from Dungeon Train (bh679/dungeon-train-mc); DT is the first consumer.
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    // Dungeon Train's shared bh679 Ivy repo resolves the release asset as
+    // dungeonbackup-neoforge-<v>.jar — keep the archive name in step with that.
+    archivesName = "${mod_id}-neoforge"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenCentral()
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+
+    // Puts Minecraft + NeoForge (and their slf4j/gson) on the JUnit classpath. The tests are pure
+    // @TempDir logic, but the engine logs through slf4j and the recovery screen types are MC's.
+    unitTest {
+        enable()
+        testedMod = mods.named(mod_id)
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+// Generate neoforge.mods.toml + pack.mcmeta from templates.
+tasks.register('generateModMetadata', ProcessResources) {
+    var replaceProperties = [
+        minecraft_version      : minecraft_version,
+        minecraft_version_range: minecraft_version_range,
+        neo_version            : neo_version,
+        loader_version_range   : loader_version_range,
+        mod_id                 : mod_id,
+        mod_name               : mod_name,
+        mod_license            : mod_license,
+        mod_version            : mod_version,
+        mod_authors            : mod_authors,
+        mod_description        : mod_description,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from 'src/main/templates'
+    into "${layout.buildDirectory.get()}/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir tasks.named('generateModMetadata')
+neoForge.ideSyncTask tasks.named('generateModMetadata')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "${mod_id}-neoforge"
+            from components.java
+        }
+    }
+    repositories {
+        maven { url "file://${project.projectDir}/repo" }
+    }
+}

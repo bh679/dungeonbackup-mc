@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+run/
+run-data/
+repo/
+*.log
+
+# IntelliJ / Eclipse / VS Code
+.idea/
+*.iml
+*.iws
+*.ipr
+.eclipse/
+.metadata/
+.classpath
+.project
+.settings/
+.vscode/
+bin/
+.factorypath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Forge / MC
+logs/
+
+# Listing assets — screenshots for the mod pages, not part of the build
+/images/
+LISTING.md
+
+# Claude Code local state
+.claude/worktrees/
+.claude/settings.local.json
+
+# local secrets scratch — never commit
+.secrets/

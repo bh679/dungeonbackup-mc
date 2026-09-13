@@ -1,0 +1,197 @@
+name: Release
+
+# Releases are dispatch-only. There is intentionally no `push: tags` trigger:
+# the release workflow is the SOURCE of tags, not a consumer.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to create + release (e.g. v0.1.0). Must match mod_version in gradle.properties."
+        required: true
+        type: string
+      notify_discord:
+        description: "Force a Discord announcement. Otherwise Discord only fires on a MAJOR bump (X.0.0)."
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - name: Verify input tag matches mod_version on main
+        run: |
+          TAG="${RELEASE_TAG#v}"
+          GRADLE_VERSION=$(grep '^mod_version=' gradle.properties | cut -d= -f2)
+          if [ "$TAG" != "$GRADLE_VERSION" ]; then
+            echo "::error::Input tag $RELEASE_TAG does not match mod_version=$GRADLE_VERSION on main."
+            exit 1
+          fi
+          echo "MOD_VERSION=$GRADLE_VERSION" >> "$GITHUB_ENV"
+
+      - name: Check tag does not already exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/git/refs/tags/${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "::error::Tag $RELEASE_TAG already exists."
+            exit 1
+          fi
+
+      - name: Compute release type from tag
+        id: release_type
+        run: |
+          TAG_NUMERIC="${RELEASE_TAG#v}"
+          MAJOR="${TAG_NUMERIC%%.*}"
+          REST="${TAG_NUMERIC#*.}"
+          MINOR="${REST%%.*}"
+          PATCH="${REST#*.}"
+          if [ "$MAJOR" -gt 0 ] 2>/dev/null; then
+            echo "type=release" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "type=beta" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$MAJOR" -gt 0 ] 2>/dev/null && [ "$MINOR" = "0" ] && [ "$PATCH" = "0" ]; then
+            echo "major_bump=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "major_bump=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - run: ./gradlew build test --no-daemon
+
+      - name: Stage the NeoForge jar for release
+        run: |
+          mkdir -p release-artifacts
+          # Dungeon Train's bh679 Ivy repo resolves this exact asset name — keep it flat.
+          cp build/libs/dungeonbackup-neoforge-${MOD_VERSION}.jar release-artifacts/
+          echo "=== release-artifacts contents ==="
+          ls -la release-artifacts/
+          COUNT=$(ls release-artifacts/*.jar | wc -l)
+          if [ "$COUNT" -ne 1 ]; then
+            echo "::error::Expected 1 jar in release-artifacts/, found $COUNT"
+            exit 1
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Dungeon Backup ${{ env.RELEASE_TAG }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          generate_release_notes: true
+          files: release-artifacts/*.jar
+          fail_on_unmatched_files: true
+          prerelease: ${{ steps.release_type.outputs.prerelease == 'true' }}
+
+      - name: Check mod-platform publish prerequisites
+        id: publish_check
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          MODRINTH_PROJECT_ID: ${{ vars.MODRINTH_PROJECT_ID }}
+          CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
+        run: |
+          MODRINTH_READY=false
+          CURSEFORGE_READY=false
+          if [ -n "$MODRINTH_TOKEN" ] && [ -n "$MODRINTH_PROJECT_ID" ]; then
+            MODRINTH_READY=true
+          else
+            echo "::warning::Modrinth secret/variable missing — skipping Modrinth publish."
+          fi
+          if [ -n "$CURSEFORGE_TOKEN" ] && [ -n "$CURSEFORGE_PROJECT_ID" ]; then
+            CURSEFORGE_READY=true
+          else
+            echo "::warning::CurseForge secret/variable missing — skipping CurseForge publish."
+          fi
+          echo "modrinth=$MODRINTH_READY" >> "$GITHUB_OUTPUT"
+          echo "curseforge=$CURSEFORGE_READY" >> "$GITHUB_OUTPUT"
+
+      - name: Publish NeoForge to Modrinth + CurseForge
+        id: publish_neoforge
+        if: steps.publish_check.outputs.modrinth == 'true' || steps.publish_check.outputs.curseforge == 'true'
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: ${{ steps.publish_check.outputs.modrinth == 'true' && vars.MODRINTH_PROJECT_ID || '' }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge-id: ${{ steps.publish_check.outputs.curseforge == 'true' && vars.CURSEFORGE_PROJECT_ID || '' }}
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: release-artifacts/dungeonbackup-neoforge-${{ env.MOD_VERSION }}.jar
+          name: Dungeon Backup ${{ env.RELEASE_TAG }} (NeoForge)
+          version: ${{ env.RELEASE_TAG }}+neoforge
+          version-type: ${{ steps.release_type.outputs.type }}
+          loaders: neoforge
+          game-versions: 1.21.1
+          java: 21
+          retry-attempts: 2
+          retry-delay: 10000
+          fail-mode: warn
+
+      - name: Set Modrinth side metadata (server required, client optional)
+        if: steps.publish_check.outputs.modrinth == 'true'
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          MODRINTH_PROJECT_ID: ${{ vars.MODRINTH_PROJECT_ID }}
+        run: |
+          # Backups run on the server thread (the integrated server covers singleplayer),
+          # so the server is "required"; the options rows and the recovery card are
+          # client-side extras, so the client is "optional", NOT "unsupported" —
+          # "unsupported" would tell launchers not to install it client-side.
+          # mc-publish cannot set these, so re-assert them each release.
+          # NOTE: the per-version environment *tag* shown on Modrinth is derived
+          # from the project's environment setting and is not written by
+          # mc-publish — set it once under Project → Settings → Environment
+          # (server-required / client-optional); it persists across versions.
+          HTTP_CODE=$(curl -sS -o /tmp/modrinth_env.out -w "%{http_code}" \
+            -X PATCH "https://api.modrinth.com/v2/project/${MODRINTH_PROJECT_ID}" \
+            -H "Authorization: ${MODRINTH_TOKEN}" \
+            -H "User-Agent: bh679/dungeonbackup-mc (release CI)" \
+            -H "Content-Type: application/json" \
+            -d '{"client_side":"optional","server_side":"required"}')
+          echo "Modrinth PATCH /project responded ${HTTP_CODE}"
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+            cat /tmp/modrinth_env.out || true
+            echo "::warning::Could not update Modrinth side metadata (HTTP ${HTTP_CODE}) — set it manually in project settings."
+          fi
+
+      - name: Check Discord webhook prerequisites
+        id: discord_check
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ -n "$DISCORD_WEBHOOK_URL" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::DISCORD_WEBHOOK_URL secret not set — skipping Discord notification."
+          fi
+
+      - name: Notify Discord
+        if: ${{ always() && steps.discord_check.outputs.ready == 'true' && env.RELEASE_TAG != '' && (inputs.notify_discord || steps.release_type.outputs.major_bump == 'true') }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RELEASE_TAG: ${{ env.RELEASE_TAG }}
+          REPO: ${{ github.repository }}
+          PRERELEASE: ${{ steps.release_type.outputs.prerelease }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RELEASE_URL="https://github.com/${REPO}/releases/tag/${RELEASE_TAG}"
+          curl -s -H "Content-Type: application/json" \
+            -d "{\"content\":\"**Dungeon Backup ${RELEASE_TAG}** released! ${RELEASE_URL}\"}" \
+            "$DISCORD_WEBHOOK_URL"
