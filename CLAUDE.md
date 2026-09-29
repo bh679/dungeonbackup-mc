@@ -51,7 +51,9 @@ finite list of pre-move `config/` locations a one-shot migration drains.
 
 - **Never throws.** Every entry point logs and continues. A backup system that can crash the
   game is worse than no backup system.
-- **Additive restore.** A file already on disk is never overwritten. Zip-slip is guarded.
+- **Additive restore.** A file already on disk is never overwritten — unless the consumer registered a
+  `RestoreMerger` for its path (`mergeOnRestore`), which combines the two; a merger failure leaves the
+  file untouched. Zip-slip is guarded.
 - **Archive names are the on-disk contract:** `<modId>-backup-<yyyyMMdd-HHmmss>-v<version>.zip`.
   Dungeon Train players have `dungeontrain-backup-*.zip` (schema 1) on disk in both roots;
   `V1ArchiveCompatTest` is the guard.

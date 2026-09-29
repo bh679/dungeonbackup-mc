@@ -175,8 +175,9 @@ public final class DataRecovery {
     /**
      * Restore {@code candidate} into the registration's roots.
      *
-     * <p>Additive in both directions: an archive restore skips entries whose file already exists,
-     * and a sibling restore copies rather than moves, so the instance it came from is left exactly
+     * <p>Additive in both directions: an archive restore skips entries whose file already exists —
+     * or, for paths the registration names in {@code mergeOnRestore}, merges them with the
+     * consumer's {@link games.brennan.dungeonbackup.api.RestoreMerger} — and a sibling restore copies rather than moves, so the instance it came from is left exactly
      * as it was. Nothing here can make the player worse off than before they pressed the button.
      * The registration's {@code onRestored} hook is <em>not</em> run here — callers that want
      * caches reloaded run it after this returns.</p>
@@ -187,7 +188,8 @@ public final class DataRecovery {
         return switch (candidate.kind()) {
             // Both are archives this install wrote, in the same format — only the folder differs.
             case EXTERNAL_BACKUP, BACKUP ->
-                BackupArchiver.restore(candidate.path(), registration.restoreTargets());
+                BackupArchiver.restore(candidate.path(), registration.restoreTargets(),
+                    registration::mergerFor);
             case SIBLING_INSTANCE -> restoreFromInstance(registration, candidate.path());
         };
     }
@@ -204,13 +206,17 @@ public final class DataRecovery {
         Path otherConfig = instanceRoot.resolve("config");
         if (Files.isDirectory(otherData)) {
             written += FileTrees.copyTree(otherData, registration.dataRoot(),
-                registration.excludeTopLevel()).copied();
+                registration.excludeTopLevel(),
+                relative -> registration.mergerFor(registration.rootLabel(), relative)).copied();
         }
         for (Relocation relocation : registration.relocations()) {
             if (relocation.kind() != games.brennan.dungeonbackup.api.Kind.DIRECTORY) continue;
             Path from = relocation.legacyPath(otherConfig);
             if (!Files.isDirectory(from)) continue;
-            written += FileTrees.copyTree(from, relocation.newPath(registration.dataRoot())).copied();
+            Path to = relocation.newPath(registration.dataRoot());
+            String prefix = registration.dataRoot().relativize(to).toString().replace('\\', '/') + "/";
+            written += FileTrees.copyTree(from, to, java.util.Set.of(),
+                relative -> registration.mergerFor(registration.rootLabel(), prefix + relative)).copied();
         }
         LOGGER.info("[DungeonBackup] {}: copied {} file(s) from {}", registration.modId(), written, instanceRoot);
         return written;

@@ -1,5 +1,6 @@
 package games.brennan.dungeonbackup.core;
 
+import games.brennan.dungeonbackup.api.RestoreMerger;
 import games.brennan.dungeonbackup.api.Source;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -310,6 +311,15 @@ public final class BackupArchiver {
      * @return the number of files actually written
      */
     public static synchronized int restore(Path archive, List<Source> targets) throws IOException {
+        return restore(archive, targets, RestoreMerger.Resolver.NONE);
+    }
+
+    /**
+     * As above, but an entry whose file already exists is merged into it when {@code mergers} has
+     * a merger for it (see {@link RestoreMerger}); otherwise it is skipped as before.
+     */
+    public static synchronized int restore(Path archive, List<Source> targets,
+                                           RestoreMerger.Resolver mergers) throws IOException {
         int written = 0;
         try (ZipFile zip = new ZipFile(archive.toFile())) {
             var it = zip.entries();
@@ -317,7 +327,11 @@ public final class BackupArchiver {
                 ZipEntry entry = it.nextElement();
                 if (entry.isDirectory() || MANIFEST_ENTRY.equals(entry.getName())) continue;
                 Path target = targetFor(entry.getName(), targets);
-                if (target == null || Files.exists(target)) continue;
+                if (target == null) continue;
+                if (Files.exists(target)) {
+                    if (mergeExisting(zip, entry, target, mergers)) written++;
+                    continue;
+                }
                 Files.createDirectories(target.getParent());
                 try (var in = zip.getInputStream(entry)) {
                     Files.copy(in, target);
@@ -336,6 +350,23 @@ public final class BackupArchiver {
      * carry {@code ../} segments or an absolute path (zip-slip). The resolved path is therefore
      * required to stay inside its target directory.</p>
      */
+    /** Merge one entry into its existing file, if a merger is registered for it. Never throws. */
+    private static boolean mergeExisting(ZipFile zip, ZipEntry entry, Path target,
+                                         RestoreMerger.Resolver mergers) {
+        String name = entry.getName();
+        int slash = name.indexOf('/');
+        var merger = mergers.find(name.substring(0, slash), name.substring(slash + 1));
+        if (merger.isEmpty()) return false;
+        byte[] backedUp;
+        try (var in = zip.getInputStream(entry)) {
+            backedUp = in.readAllBytes();
+        } catch (IOException e) {
+            LOGGER.warn("[DungeonBackup] Couldn't read {} to merge: {}", name, e.toString());
+            return false;
+        }
+        return FileTrees.mergeInto(target, backedUp, merger.get());
+    }
+
     static Path targetFor(String entryName, List<Source> targets) {
         int slash = entryName.indexOf('/');
         if (slash <= 0 || slash == entryName.length() - 1) return null;

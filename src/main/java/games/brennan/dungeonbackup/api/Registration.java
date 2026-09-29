@@ -18,6 +18,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 /**
  * Everything Dungeon Backup knows about one consumer mod's player data — and the only place a
@@ -51,6 +52,7 @@ public final class Registration {
     private final Function<Path, Optional<String>> siblingProbe;
     private final Runnable beforeMigration;
     private final Runnable onRestored;
+    private final List<MergeRule> mergeRules;
     private final Set<Trigger> triggers;
     private final BooleanSupplier promptSuppressed;
     private final String dataDescriptionKey;
@@ -75,6 +77,7 @@ public final class Registration {
         this.siblingProbe = b.siblingProbe == null ? this::defaultSiblingProbe : b.siblingProbe;
         this.beforeMigration = b.beforeMigration == null ? () -> { } : b.beforeMigration;
         this.onRestored = b.onRestored == null ? () -> { } : b.onRestored;
+        this.mergeRules = List.copyOf(b.mergeRules);
         this.triggers = b.triggers.isEmpty()
             ? Collections.unmodifiableSet(EnumSet.allOf(Trigger.class))
             : Collections.unmodifiableSet(EnumSet.copyOf(b.triggers));
@@ -150,6 +153,50 @@ public final class Registration {
      */
     public List<Source> restoreTargets() {
         return sources();
+    }
+
+    /**
+     * The merger a restore should use for a file that already exists, or empty to leave it alone.
+     * First matching rule wins, in registration order.
+     *
+     * @param label        the archive label the file belongs to
+     * @param relativePath the file's path under that label's tree, {@code /}-separated
+     */
+    public Optional<RestoreMerger> mergerFor(String label, String relativePath) {
+        if (label == null || relativePath == null) return Optional.empty();
+        String normalised = relativePath.replace('\\', '/');
+        for (MergeRule rule : mergeRules) {
+            if (rule.label().equals(label) && rule.pattern().matcher(normalised).matches()) {
+                return Optional.of(rule.merger());
+            }
+        }
+        return Optional.empty();
+    }
+
+    /** One {@link Builder#mergeOnRestore} entry: which files, and how to combine them. */
+    private record MergeRule(String label, Pattern pattern, RestoreMerger merger) {}
+
+    /**
+     * A {@code /}-separated glob as a regex: {@code **} crosses folders, {@code *} and {@code ?}
+     * stay inside one, everything else is literal. Hand-rolled rather than {@code PathMatcher}
+     * because that follows the host's separator, and archive entry names are always {@code /}.
+     */
+    static Pattern globToPattern(String glob) {
+        StringBuilder regex = new StringBuilder();
+        for (int i = 0; i < glob.length(); i++) {
+            char c = glob.charAt(i);
+            if (c == '*' && i + 1 < glob.length() && glob.charAt(i + 1) == '*') {
+                regex.append(".*");
+                i++;
+            } else if (c == '*') {
+                regex.append("[^/]*");
+            } else if (c == '?') {
+                regex.append("[^/]");
+            } else {
+                regex.append(Pattern.quote(String.valueOf(c)));
+            }
+        }
+        return Pattern.compile(regex.toString());
     }
 
     // ---- Migration ----
@@ -273,6 +320,7 @@ public final class Registration {
         private Function<Path, Optional<String>> siblingProbe;
         private Runnable beforeMigration;
         private Runnable onRestored;
+        private final List<MergeRule> mergeRules = new ArrayList<>();
         private final Set<Trigger> triggers = EnumSet.noneOf(Trigger.class);
         private BooleanSupplier promptSuppressed;
         private String dataDescriptionKey;
@@ -324,6 +372,23 @@ public final class Registration {
         public Builder beforeMigration(Runnable hook) { this.beforeMigration = hook; return this; }
 
         public Builder onRestored(Runnable hook) { this.onRestored = hook; return this; }
+
+        /**
+         * Combine, rather than skip, a restored file that already exists on disk. For files the
+         * consumer regenerates by itself — see {@link RestoreMerger} for why skipping loses data.
+         *
+         * @param label  the archive label the files live under — the root label, or an
+         *               {@link #alsoBackUp} label
+         * @param glob   {@code /}-separated path under that tree; {@code *} matches within a folder,
+         *               {@code **} across folders, e.g. {@code "achievements/*.json"}
+         */
+        public Builder mergeOnRestore(String label, String glob, RestoreMerger merger) {
+            if (label == null || label.isBlank()) throw new IllegalArgumentException("label is required");
+            if (glob == null || glob.isBlank()) throw new IllegalArgumentException("glob is required");
+            if (merger == null) throw new IllegalArgumentException("merger is required");
+            this.mergeRules.add(new MergeRule(label, globToPattern(glob), merger));
+            return this;
+        }
 
         /** Restrict automatic backups to these moments. Unset means all of them. */
         public Builder backupOn(Trigger first, Trigger... rest) {
