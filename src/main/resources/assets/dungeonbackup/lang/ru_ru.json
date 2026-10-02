@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Папка с копиями: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Другая сборка с %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Восстановить",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Восстанавливает первое из списка. Только добавляет отсутствующие файлы — ничего из текущих файлов не изменится или удалится. Используйте %s в игре, чтобы выбрать другую копию.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Восстанавливает первое из списка. Только добавляет отсутствующие файлы — ничего из текущих файлов не изменится или удалится.",
   "gui.dungeonbackup.data_recovery.later": "Не сейчас",
   "gui.dungeonbackup.data_recovery.never": "Не спрашивать",
   "gui.dungeonbackup.data_recovery.done.title": "Восстановлено",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Удалить все %s копий?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Это удалит все резервные копии из обоих мест, где они хранятся:\n%s\nи\n%s\n\nВаши сохранённые данные не затрагиваются. Отменить это нельзя.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Будут удалены все копии:\n%s\n\nВаши сохранённые данные не будут тронуты. Действие нельзя отменить.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Удалить копии",
-  "command.dungeonbackup.name_mod": "Укажите мод, к которому это относится: %s",
-  "command.dungeonbackup.backup.success": "Заархивировано в %s (%s файл[ов])",
-  "command.dungeonbackup.backup.unchanged": "Ничего не изменилось с последней копии.",
-  "command.dungeonbackup.backup.off": "Резервные копии выключены. Сначала включите их в настройках.",
-  "command.dungeonbackup.backup.fail": "Не удалось записать резервную копию: %s",
-  "command.dungeonbackup.restore.header": "Ваши данные %s могут быть восстановлены из:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Неоткуда восстанавливать.",
-  "command.dungeonbackup.restore.no_such": "Нет номера %1$s. Пропишите %2$s, чтобы просмотреть список.",
-  "command.dungeonbackup.restore.success": "Восстановлено %s файл(ов) из %s.",
-  "command.dungeonbackup.restore.fail": "Восстановление не удалось: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Удалить копии"
 }

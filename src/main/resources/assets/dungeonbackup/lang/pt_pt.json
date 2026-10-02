@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Pasta das cópias de segurança: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Outra instalação com %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Restaurar",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaura a primeira entrada da lista. Só acrescenta ficheiros que estejam em falta — nada do que tens agora é alterado ou apagado. Usa %s dentro do jogo para escolheres outra.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaura a primeira entrada da lista. Só acrescenta ficheiros que estejam em falta — nada do que tens agora é alterado ou apagado.",
   "gui.dungeonbackup.data_recovery.later": "Agora não",
   "gui.dungeonbackup.data_recovery.never": "Não perguntar",
   "gui.dungeonbackup.data_recovery.done.title": "Restaurado",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Apagar todas as %s cópia(s) de segurança?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Isto remove todas as cópias de segurança dos dois sítios onde são guardadas:\n%s\ne\n%s\n\nOs teus dados guardados não são afetados. Não é possível desfazer.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Isto remove todas as cópias de segurança de:\n%s\n\nOs teus dados guardados não são afetados. Não é possível desfazer.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Apagar cópias",
-  "command.dungeonbackup.name_mod": "Indica o mod a que isto se aplica: %s",
-  "command.dungeonbackup.backup.success": "Cópia de segurança feita em %s (%s ficheiro(s)).",
-  "command.dungeonbackup.backup.unchanged": "Nada mudou desde a última cópia de segurança.",
-  "command.dungeonbackup.backup.off": "As cópias de segurança estão desligadas. Liga-as primeiro nas Opções.",
-  "command.dungeonbackup.backup.fail": "Não foi possível escrever a cópia de segurança: %s",
-  "command.dungeonbackup.restore.header": "Sítios de onde os teus dados do %s podem ser restaurados:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Não foi encontrado nada de onde restaurar.",
-  "command.dungeonbackup.restore.no_such": "Não existe a entrada %1$s. Usa %2$s para veres a lista.",
-  "command.dungeonbackup.restore.success": "Foram restaurados %s ficheiro(s) a partir de %s.",
-  "command.dungeonbackup.restore.fail": "Não foi possível concluir o restauro: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Apagar cópias"
 }

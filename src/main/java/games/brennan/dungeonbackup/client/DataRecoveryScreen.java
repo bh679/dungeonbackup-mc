@@ -2,7 +2,6 @@ package games.brennan.dungeonbackup.client;
 
 import games.brennan.dungeonbackup.DungeonBackupMod;
 import games.brennan.dungeonbackup.api.Registration;
-import games.brennan.dungeonbackup.command.BackupCommands;
 import games.brennan.dungeonbackup.core.DataRecovery;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -120,11 +119,6 @@ public final class DataRecoveryScreen extends Screen {
         return Component.translatable(key == null ? KEY_GENERIC_DESCRIPTION : key);
     }
 
-    private String restoreCommand() {
-        return "/" + (registration.restoreCommandAlias() != null
-            ? registration.restoreCommandAlias() : DungeonBackupMod.MOD_ID + " restore");
-    }
-
     @Override
     protected void init() {
         int innerWidth = CARD_W - 2 * PAD;
@@ -180,7 +174,7 @@ public final class DataRecoveryScreen extends Screen {
                 .bounds(innerLeft, actionsTop, third, BUTTON_H)
                 // Say up front that restoring can only add — the word "restore" reads as
                 // "overwrite what I have now", and it never does.
-                .tooltip(Tooltip.create(Component.translatable(KEY_RESTORE_TOOLTIP, restoreCommand())))
+                .tooltip(Tooltip.create(Component.translatable(KEY_RESTORE_TOOLTIP)))
                 .build());
         addRenderableWidget(Button.builder(Component.translatable(KEY_LATER), b -> close())
                 .bounds(innerLeft + third + BUTTON_GAP, actionsTop, third, BUTTON_H)
@@ -244,7 +238,7 @@ public final class DataRecoveryScreen extends Screen {
         try {
             restoredFiles = DataRecovery.restore(registration, candidates.get(0));
             restoreFailed = false;
-            BackupCommands.runRestoredHook(registration);
+            DataRecovery.runRestoredHook(registration);
         } catch (IOException e) {
             restoredFiles = 0;
             restoreFailed = true;

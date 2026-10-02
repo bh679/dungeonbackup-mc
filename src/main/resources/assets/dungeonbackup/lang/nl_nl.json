@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Map met reservekopieën: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Een andere installatie met %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Herstellen",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Herstelt het eerste item in de lijst. Voegt alleen bestanden toe die ontbreken — aan wat je nu hebt wordt niets gewijzigd of verwijderd. Gebruik %s in het spel om een ander item te kiezen.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Herstelt het eerste item in de lijst. Voegt alleen bestanden toe die ontbreken — aan wat je nu hebt wordt niets gewijzigd of verwijderd.",
   "gui.dungeonbackup.data_recovery.later": "Niet nu",
   "gui.dungeonbackup.data_recovery.never": "Niet vragen",
   "gui.dungeonbackup.data_recovery.done.title": "Hersteld",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Alle %s reservekopie(ën) verwijderen?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Dit verwijdert elke reservekopie van beide plekken waar ze bewaard worden:\n%s\nen\n%s\n\nJe opgeslagen gegevens blijven ongemoeid. Dit kan niet ongedaan worden gemaakt.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Dit verwijdert elke reservekopie van:\n%s\n\nJe opgeslagen gegevens blijven ongemoeid. Dit kan niet ongedaan worden gemaakt.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Reservekopieën verwijderen",
-  "command.dungeonbackup.name_mod": "Geef de mod op waarvoor dit geldt: %s",
-  "command.dungeonbackup.backup.success": "Reservekopie gemaakt in %s (%s bestand(en)).",
-  "command.dungeonbackup.backup.unchanged": "Er is niets veranderd sinds de laatste reservekopie.",
-  "command.dungeonbackup.backup.off": "Reservekopieën staan uit. Zet ze eerst aan in de Opties.",
-  "command.dungeonbackup.backup.fail": "Kon de reservekopie niet schrijven: %s",
-  "command.dungeonbackup.restore.header": "Plekken waarvandaan je gegevens van %s hersteld kunnen worden:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Niets gevonden om van te herstellen.",
-  "command.dungeonbackup.restore.no_such": "Er is geen item %1$s. Voer %2$s uit om de lijst te zien.",
-  "command.dungeonbackup.restore.success": "%s bestand(en) hersteld uit %s.",
-  "command.dungeonbackup.restore.fail": "Het herstellen kon niet worden voltooid: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Reservekopieën verwijderen"
 }

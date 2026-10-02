@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Folder cu copii de rezervă: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Altă instalare cu %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Restaurează",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaurează prima intrare din listă. Adaugă doar fișierele care lipsesc — nimic din ce ai acum nu e modificat sau șters. Folosește %s în joc ca să alegi alta.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaurează prima intrare din listă. Adaugă doar fișierele care lipsesc — nimic din ce ai acum nu e modificat sau șters.",
   "gui.dungeonbackup.data_recovery.later": "Nu acum",
   "gui.dungeonbackup.data_recovery.never": "Nu întreba",
   "gui.dungeonbackup.data_recovery.done.title": "Restaurat",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Ștergi toate cele %s copii de rezervă?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Asta elimină fiecare copie de rezervă din ambele locuri în care sunt păstrate:\n%s\nși\n%s\n\nDatele tale salvate nu sunt afectate. Această acțiune nu poate fi anulată.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Asta elimină fiecare copie de rezervă din:\n%s\n\nDatele tale salvate nu sunt afectate. Această acțiune nu poate fi anulată.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Șterge copiile",
-  "command.dungeonbackup.name_mod": "Numește modul vizat: %s",
-  "command.dungeonbackup.backup.success": "Copie de rezervă salvată în %s (%s fișier(e)).",
-  "command.dungeonbackup.backup.unchanged": "Nu s-a schimbat nimic de la ultima copie de rezervă.",
-  "command.dungeonbackup.backup.off": "Copiile de rezervă sunt oprite. Pornește-le mai întâi din Opțiuni.",
-  "command.dungeonbackup.backup.fail": "Nu am putut scrie copia de rezervă: %s",
-  "command.dungeonbackup.restore.header": "Locuri de unde ar putea fi restaurate datele tale %s:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Nu am găsit nimic de unde să restaurez.",
-  "command.dungeonbackup.restore.no_such": "Nu există intrarea %1$s. Rulează %2$s ca să vezi lista.",
-  "command.dungeonbackup.restore.success": "Am restaurat %s fișier(e) din %s.",
-  "command.dungeonbackup.restore.fail": "Restaurarea nu s-a putut încheia: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Șterge copiile"
 }

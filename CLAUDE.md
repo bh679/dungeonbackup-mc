@@ -42,10 +42,12 @@ finite list of pre-move `config/` locations a one-shot migration drains.
   kept), `DataMigration`, `DataRecovery`, `BackupScheduler`, `BackupMode`, `ExternalRoots`,
   `FileTrees`. Every entry point takes explicit roots — that is why the tests exist.
 - `config/BackupClientConfig` — `dungeonbackup-client.toml`. Consumers do not re-declare this.
-- `neoforge/BackupEvents` — the only Forge-event surface (+ command registration).
+- `neoforge/BackupEvents` — the only Forge-event surface.
 - `client/` — `DataRecoveryScreen` + `DataRecoveryPromptHandler` (title-screen card),
   `BackupOptionsWidgets` (the three controls, for a host screen).
-- `command/BackupCommands` — `/dungeonbackup backup|restore [mod] [n]` + consumer aliases.
+- **No commands.** Backups and restores are run by the library and its consumers, never by a
+  player (removed in 0.3.0). `Registration.Builder#commandAliases` is an accepted-and-ignored
+  no-op kept so consumer jars built against 0.2.0 still link.
 
 ## Invariants worth knowing before touching anything
 

@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Carpeta de respaldos: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Otra instalación con %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Restaurar",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaura la primera entrada de la lista. Solo agrega los archivos que faltan: nada de lo que tienes ahora se cambia ni se borra. Usa %s dentro del juego para elegir otra.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaura la primera entrada de la lista. Solo agrega los archivos que faltan: nada de lo que tienes ahora se cambia ni se borra.",
   "gui.dungeonbackup.data_recovery.later": "Ahora no",
   "gui.dungeonbackup.data_recovery.never": "No preguntar",
   "gui.dungeonbackup.data_recovery.done.title": "Restaurado",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "¿Borrar los %s respaldo(s)?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Esto quita todos los respaldos de los dos lugares donde se guardan:\n%s\ny\n%s\n\nTus datos guardados no se ven afectados. Esto no se puede deshacer.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Esto quita todos los respaldos de:\n%s\n\nTus datos guardados no se ven afectados. Esto no se puede deshacer.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Borrar respaldos",
-  "command.dungeonbackup.name_mod": "Indica el mod sobre el que actuar: %s",
-  "command.dungeonbackup.backup.success": "Respaldado en %s (%s archivo(s)).",
-  "command.dungeonbackup.backup.unchanged": "Nada ha cambiado desde el último respaldo.",
-  "command.dungeonbackup.backup.off": "Los respaldos están desactivados. Actívalos primero en Opciones.",
-  "command.dungeonbackup.backup.fail": "No se pudo escribir el respaldo: %s",
-  "command.dungeonbackup.restore.header": "Lugares desde donde se podrían restaurar tus datos de %s:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "No se encontró nada desde donde restaurar.",
-  "command.dungeonbackup.restore.no_such": "No existe la entrada %1$s. Ejecuta %2$s para ver la lista.",
-  "command.dungeonbackup.restore.success": "Se restauraron %s archivo(s) desde %s.",
-  "command.dungeonbackup.restore.fail": "La restauración no pudo terminar: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Borrar respaldos"
 }

@@ -56,8 +56,6 @@ public final class Registration {
     private final Set<Trigger> triggers;
     private final BooleanSupplier promptSuppressed;
     private final String dataDescriptionKey;
-    private final String backupCommandAlias;
-    private final String restoreCommandAlias;
     private final String legacyOverrideProperty;
     private final String legacyOverrideEnv;
 
@@ -83,8 +81,6 @@ public final class Registration {
             : Collections.unmodifiableSet(EnumSet.copyOf(b.triggers));
         this.promptSuppressed = b.promptSuppressed == null ? () -> false : b.promptSuppressed;
         this.dataDescriptionKey = b.dataDescriptionKey;
-        this.backupCommandAlias = b.backupCommandAlias;
-        this.restoreCommandAlias = b.restoreCommandAlias;
         this.legacyOverrideProperty = b.legacyOverrideProperty;
         this.legacyOverrideEnv = b.legacyOverrideEnv;
     }
@@ -93,7 +89,7 @@ public final class Registration {
 
     public String modId() { return modId; }
 
-    /** Human-readable mod name, for the recovery card and command output. */
+    /** Human-readable mod name, for the recovery card. */
     public String displayName() { return displayName; }
 
     /** The version stamped into each archive's manifest and filename. */
@@ -250,17 +246,22 @@ public final class Registration {
      */
     public String dataDescriptionKey() { return dataDescriptionKey; }
 
-    // ---- Triggers, commands, overrides ----
+    // ---- Triggers, overrides ----
 
     public Set<Trigger> triggers() { return triggers; }
 
     public boolean backsUpOn(Trigger trigger) { return triggers.contains(trigger); }
 
-    /** Root command name that aliases {@code /dungeonbackup backup} for this mod, or null. */
-    public String backupCommandAlias() { return backupCommandAlias; }
+    /**
+     * Always null. Dungeon Backup registers no commands since 0.3.0 — backups and restores are run
+     * by the library and its consumers, never by a player. Kept so older consumer jars still link.
+     */
+    @Deprecated
+    public String backupCommandAlias() { return null; }
 
-    /** Root command name that aliases {@code /dungeonbackup restore [n]} for this mod, or null. */
-    public String restoreCommandAlias() { return restoreCommandAlias; }
+    /** Always null — see {@link #backupCommandAlias()}. */
+    @Deprecated
+    public String restoreCommandAlias() { return null; }
 
     /** A system-property name this mod previously honoured as a backup-mode override, or null. */
     public String legacyOverrideProperty() { return legacyOverrideProperty; }
@@ -324,8 +325,6 @@ public final class Registration {
         private final Set<Trigger> triggers = EnumSet.noneOf(Trigger.class);
         private BooleanSupplier promptSuppressed;
         private String dataDescriptionKey;
-        private String backupCommandAlias;
-        private String restoreCommandAlias;
         private String legacyOverrideProperty;
         private String legacyOverrideEnv;
 
@@ -401,10 +400,12 @@ public final class Registration {
 
         public Builder dataDescriptionKey(String key) { this.dataDescriptionKey = key; return this; }
 
-        /** Root command names to register as aliases, e.g. {@code ("dtbackup", "dtrestore")}. */
+        /**
+         * Accepted and ignored. Dungeon Backup registers no commands since 0.3.0; this stays only
+         * so a consumer jar built against 0.2.0 still links when a newer library is installed.
+         */
+        @Deprecated
         public Builder commandAliases(String backup, String restore) {
-            this.backupCommandAlias = backup;
-            this.restoreCommandAlias = restore;
             return this;
         }
 

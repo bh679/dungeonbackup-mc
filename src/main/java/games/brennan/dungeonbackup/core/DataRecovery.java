@@ -194,6 +194,15 @@ public final class DataRecovery {
         };
     }
 
+    /** Run the consumer's post-restore hook; its failure must not read as a failed restore. */
+    public static void runRestoredHook(Registration registration) {
+        try {
+            registration.onRestored().run();
+        } catch (RuntimeException e) {
+            LOGGER.warn("[DungeonBackup] {}: onRestored hook failed: {}", registration.modId(), e.toString());
+        }
+    }
+
     /**
      * Copy this mod's data out of another instance folder, from whichever layout it is in: the
      * whole {@code <rootLabel>/} tree at the instance root (minus the excluded folders — no point

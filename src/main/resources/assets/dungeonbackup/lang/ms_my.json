@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Folder sandaran: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Pemasangan lain dengan %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Pulihkan",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Memulihkan entri pertama dalam senarai. Hanya menambah fail yang hilang — tiada apa yang anda ada sekarang diubah atau dipadam. Gunakan %s dalam permainan untuk memilih yang lain.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Memulihkan entri pertama dalam senarai. Hanya menambah fail yang hilang — tiada apa yang anda ada sekarang diubah atau dipadam.",
   "gui.dungeonbackup.data_recovery.later": "Bukan sekarang",
   "gui.dungeonbackup.data_recovery.never": "Jangan tanya",
   "gui.dungeonbackup.data_recovery.done.title": "Dipulihkan",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Padam kesemua %s sandaran?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Ini membuang setiap sandaran daripada kedua-dua tempat ia disimpan:\n%s\ndan\n%s\n\nData tersimpan anda tidak terjejas. Ini tidak boleh dibatalkan.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Ini membuang setiap sandaran daripada:\n%s\n\nData tersimpan anda tidak terjejas. Ini tidak boleh dibatalkan.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Padam sandaran",
-  "command.dungeonbackup.name_mod": "Namakan mod yang berkenaan: %s",
-  "command.dungeonbackup.backup.success": "Disandarkan ke %s (%s fail).",
-  "command.dungeonbackup.backup.unchanged": "Tiada apa-apa berubah sejak sandaran terakhir.",
-  "command.dungeonbackup.backup.off": "Sandaran dimatikan. Hidupkannya dahulu dalam Pilihan.",
-  "command.dungeonbackup.backup.fail": "Tidak dapat menulis sandaran: %s",
-  "command.dungeonbackup.restore.header": "Tempat data %s anda boleh dipulihkan:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Tiada apa-apa ditemui untuk dipulihkan.",
-  "command.dungeonbackup.restore.no_such": "Tiada entri %1$s. Jalankan %2$s untuk melihat senarai.",
-  "command.dungeonbackup.restore.success": "Memulihkan %s fail daripada %s.",
-  "command.dungeonbackup.restore.fail": "Pemulihan tidak dapat diselesaikan: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Padam sandaran"
 }

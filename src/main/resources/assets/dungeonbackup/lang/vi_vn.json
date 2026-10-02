@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Thư mục sao lưu: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Một bản cài khác có %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Khôi phục",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Khôi phục mục đầu tiên trong danh sách. Chỉ thêm lại những tệp đang thiếu — không có gì bạn đang có bị thay đổi hay xóa. Dùng %s trong trò chơi để chọn một mục khác.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Khôi phục mục đầu tiên trong danh sách. Chỉ thêm lại những tệp đang thiếu — không có gì bạn đang có bị thay đổi hay xóa.",
   "gui.dungeonbackup.data_recovery.later": "Để sau",
   "gui.dungeonbackup.data_recovery.never": "Đừng hỏi nữa",
   "gui.dungeonbackup.data_recovery.done.title": "Đã khôi phục",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Xóa toàn bộ %s bản sao lưu?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Việc này gỡ mọi bản sao lưu khỏi cả hai nơi chúng được giữ:\n%s\nvà\n%s\n\nDữ liệu đã lưu của bạn không bị ảnh hưởng. Không thể hoàn tác.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Việc này gỡ mọi bản sao lưu khỏi:\n%s\n\nDữ liệu đã lưu của bạn không bị ảnh hưởng. Không thể hoàn tác.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Xóa sao lưu",
-  "command.dungeonbackup.name_mod": "Hãy nêu tên mod cần thao tác: %s",
-  "command.dungeonbackup.backup.success": "Đã sao lưu vào %s (%s tệp).",
-  "command.dungeonbackup.backup.unchanged": "Không có gì thay đổi kể từ lần sao lưu trước.",
-  "command.dungeonbackup.backup.off": "Sao lưu đang tắt. Hãy bật trong Tùy chọn trước.",
-  "command.dungeonbackup.backup.fail": "Không ghi được bản sao lưu: %s",
-  "command.dungeonbackup.restore.header": "Những nơi có thể khôi phục dữ liệu %s của bạn:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Không tìm thấy nơi nào để khôi phục.",
-  "command.dungeonbackup.restore.no_such": "Không có mục %1$s. Chạy %2$s để xem danh sách.",
-  "command.dungeonbackup.restore.success": "Đã khôi phục %s tệp từ %s.",
-  "command.dungeonbackup.restore.fail": "Không thể hoàn tất việc khôi phục: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Xóa sao lưu"
 }

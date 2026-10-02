@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Sicherungsordner: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Andere Installation mit %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Wiederherstellen",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Stellt den ersten aufgeführten Eintrag wieder her. Fügt nur fehlende Dateien hinzu — nichts, was du jetzt hast, wird geändert oder gelöscht. Nutze %s im Spiel, um einen anderen zu wählen.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Stellt den ersten aufgeführten Eintrag wieder her. Fügt nur fehlende Dateien hinzu — nichts, was du jetzt hast, wird geändert oder gelöscht.",
   "gui.dungeonbackup.data_recovery.later": "Nicht jetzt",
   "gui.dungeonbackup.data_recovery.never": "Nicht fragen",
   "gui.dungeonbackup.data_recovery.done.title": "Wiederhergestellt",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Alle %s Sicherung(en) löschen?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Dies entfernt jede Sicherung von beiden Orten, an denen sie aufbewahrt werden:\n%s\nund\n%s\n\nDeine gespeicherten Daten sind nicht betroffen. Dies kann nicht rückgängig gemacht werden.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Dies entfernt jede Sicherung aus:\n%s\n\nDeine gespeicherten Daten sind nicht betroffen. Dies kann nicht rückgängig gemacht werden.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Sicherungen löschen",
-  "command.dungeonbackup.name_mod": "Gib die Mod an, für die das gelten soll: %s",
-  "command.dungeonbackup.backup.success": "Gesichert unter %s (%s Datei(en)).",
-  "command.dungeonbackup.backup.unchanged": "Seit der letzten Sicherung hat sich nichts geändert.",
-  "command.dungeonbackup.backup.off": "Sicherungen sind ausgeschaltet. Schalte sie zuerst in den Optionen ein.",
-  "command.dungeonbackup.backup.fail": "Die Sicherung konnte nicht geschrieben werden: %s",
-  "command.dungeonbackup.restore.header": "Orte, von denen deine %s-Daten wiederhergestellt werden könnten:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Nichts gefunden, woraus wiederhergestellt werden könnte.",
-  "command.dungeonbackup.restore.no_such": "Es gibt keinen Eintrag %1$s. Führe %2$s aus, um die Liste zu sehen.",
-  "command.dungeonbackup.restore.success": "%s Datei(en) aus %s wiederhergestellt.",
-  "command.dungeonbackup.restore.fail": "Die Wiederherstellung konnte nicht abgeschlossen werden: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Sicherungen löschen"
 }

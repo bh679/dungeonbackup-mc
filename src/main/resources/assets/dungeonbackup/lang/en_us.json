@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Backups folder: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Another install with %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Restore",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restores the first entry listed. Only adds files that are missing — nothing you have now is changed or deleted. Use %s in-game to pick a different one.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restores the first entry listed. Only adds files that are missing — nothing you have now is changed or deleted.",
   "gui.dungeonbackup.data_recovery.later": "Not now",
   "gui.dungeonbackup.data_recovery.never": "Don't ask",
   "gui.dungeonbackup.data_recovery.done.title": "Restored",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Delete all %s backup(s)?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "This removes every backup from both places they are kept:\n%s\nand\n%s\n\nYour saved data is not affected. This cannot be undone.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "This removes every backup from:\n%s\n\nYour saved data is not affected. This cannot be undone.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Delete backups",
-  "command.dungeonbackup.name_mod": "Name the mod to act on: %s",
-  "command.dungeonbackup.backup.success": "Backed up to %s (%s file(s)).",
-  "command.dungeonbackup.backup.unchanged": "Nothing has changed since the last backup.",
-  "command.dungeonbackup.backup.off": "Backups are turned off. Turn them on in Options first.",
-  "command.dungeonbackup.backup.fail": "Couldn't write the backup: %s",
-  "command.dungeonbackup.restore.header": "Places your %s data could be restored from:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Nothing found to restore from.",
-  "command.dungeonbackup.restore.no_such": "There's no entry %1$s. Run %2$s to see the list.",
-  "command.dungeonbackup.restore.success": "Restored %s file(s) from %s.",
-  "command.dungeonbackup.restore.fail": "The restore couldn't finish: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Delete backups"
 }

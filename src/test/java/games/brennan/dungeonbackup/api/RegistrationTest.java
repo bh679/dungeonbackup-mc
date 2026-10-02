@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -124,5 +125,16 @@ class RegistrationTest {
         Files.createDirectories(preferred.getParent()); Files.writeString(preferred, "new");
         assertEquals(preferred, located.read());
         assertEquals(List.of(preferred, legacy), located.all());
+    }
+
+    @Test
+    @SuppressWarnings("deprecation")
+    void commandAliasesAreAcceptedAndIgnored() {
+        // Older consumer jars still call commandAliases; the library registers no commands any
+        // more — backups and restores are never run by a player — so the names go nowhere.
+        Registration r = Registration.builder("x").dataRoot(tmp).commandAliases("xbackup", "xrestore").build();
+
+        assertNull(r.backupCommandAlias());
+        assertNull(r.restoreCommandAlias());
     }
 }

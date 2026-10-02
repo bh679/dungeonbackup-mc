@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "โฟลเดอร์ไฟล์สำรอง: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "ตัวติดตั้งอื่นที่มี %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "กู้คืน",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "กู้คืนรายการแรกในรายชื่อ เพิ่มเฉพาะไฟล์ที่หายไป — ไม่มีสิ่งใดที่คุณมีอยู่ถูกเปลี่ยนหรือลบ ใช้ %s ในเกมเพื่อเลือกรายการอื่น",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "กู้คืนรายการแรกในรายชื่อ เพิ่มเฉพาะไฟล์ที่หายไป — ไม่มีสิ่งใดที่คุณมีอยู่ถูกเปลี่ยนหรือลบ",
   "gui.dungeonbackup.data_recovery.later": "ไว้ทีหลัง",
   "gui.dungeonbackup.data_recovery.never": "ไม่ต้องถาม",
   "gui.dungeonbackup.data_recovery.done.title": "กู้คืนแล้ว",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "ลบไฟล์สำรองทั้งหมด %s ชุด?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "นี่จะลบไฟล์สำรองทุกชุดจากทั้งสองที่ที่เก็บไว้:\n%s\nและ\n%s\n\nข้อมูลที่บันทึกไว้ของคุณไม่ได้รับผลกระทบ การกระทำนี้ย้อนกลับไม่ได้",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "นี่จะลบไฟล์สำรองทุกชุดจาก:\n%s\n\nข้อมูลที่บันทึกไว้ของคุณไม่ได้รับผลกระทบ การกระทำนี้ย้อนกลับไม่ได้",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "ลบไฟล์สำรอง",
-  "command.dungeonbackup.name_mod": "ระบุม็อดที่ต้องการ: %s",
-  "command.dungeonbackup.backup.success": "สำรองไว้ที่ %s แล้ว (%s ไฟล์)",
-  "command.dungeonbackup.backup.unchanged": "ไม่มีอะไรเปลี่ยนแปลงตั้งแต่การสำรองครั้งล่าสุด",
-  "command.dungeonbackup.backup.off": "การสำรองข้อมูลถูกปิดอยู่ เปิดในตัวเลือกก่อน",
-  "command.dungeonbackup.backup.fail": "เขียนไฟล์สำรองไม่ได้: %s",
-  "command.dungeonbackup.restore.header": "ที่ที่กู้คืนข้อมูลของ %s ได้:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "ไม่พบที่ใดให้กู้คืน",
-  "command.dungeonbackup.restore.no_such": "ไม่มีรายการ %1$s ใช้ %2$s เพื่อดูรายชื่อ",
-  "command.dungeonbackup.restore.success": "กู้คืน %s ไฟล์จาก %s แล้ว",
-  "command.dungeonbackup.restore.fail": "การกู้คืนทำไม่สำเร็จ: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "ลบไฟล์สำรอง"
 }

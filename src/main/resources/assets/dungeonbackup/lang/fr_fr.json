@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Dossier de sauvegardes : %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Une autre installation avec %s : %s",
   "gui.dungeonbackup.data_recovery.restore": "Restaurer",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaure la première entrée de la liste. N'ajoute que les fichiers manquants — rien de ce que tu as maintenant n'est modifié ni supprimé. Utilise %s en jeu pour en choisir une autre.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Restaure la première entrée de la liste. N'ajoute que les fichiers manquants — rien de ce que tu as maintenant n'est modifié ni supprimé.",
   "gui.dungeonbackup.data_recovery.later": "Pas maintenant",
   "gui.dungeonbackup.data_recovery.never": "Ne plus demander",
   "gui.dungeonbackup.data_recovery.done.title": "Restauré",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Supprimer les %s sauvegarde(s) ?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Ceci supprime toutes les sauvegardes des deux endroits où elles sont conservées :\n%s\net\n%s\n\nTes données sauvegardées ne sont pas affectées. Cette action est irréversible.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Ceci supprime toutes les sauvegardes de :\n%s\n\nTes données sauvegardées ne sont pas affectées. Cette action est irréversible.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Supprimer les sauvegardes",
-  "command.dungeonbackup.name_mod": "Indique le mod concerné : %s",
-  "command.dungeonbackup.backup.success": "Sauvegardé dans %s (%s fichier(s)).",
-  "command.dungeonbackup.backup.unchanged": "Rien n'a changé depuis la dernière sauvegarde.",
-  "command.dungeonbackup.backup.off": "Les sauvegardes sont désactivées. Active-les d'abord dans les Options.",
-  "command.dungeonbackup.backup.fail": "Impossible d'écrire la sauvegarde : %s",
-  "command.dungeonbackup.restore.header": "Endroits d'où tes données de %s pourraient être restaurées :",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Rien trouvé d'où restaurer.",
-  "command.dungeonbackup.restore.no_such": "Il n'y a pas d'entrée %1$s. Lance %2$s pour voir la liste.",
-  "command.dungeonbackup.restore.success": "%s fichier(s) restauré(s) depuis %s.",
-  "command.dungeonbackup.restore.fail": "La restauration n'a pas pu aboutir : %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Supprimer les sauvegardes"
 }

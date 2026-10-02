@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Folder kopii zapasowych: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Inna instalacja z %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Przywróć",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Przywraca pierwszą pozycję z listy. Dodaje tylko brakujące pliki — nic z tego, co masz teraz, nie zostanie zmienione ani usunięte. Użyj %s w grze, aby wybrać inną.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Przywraca pierwszą pozycję z listy. Dodaje tylko brakujące pliki — nic z tego, co masz teraz, nie zostanie zmienione ani usunięte.",
   "gui.dungeonbackup.data_recovery.later": "Nie teraz",
   "gui.dungeonbackup.data_recovery.never": "Nie pytaj",
   "gui.dungeonbackup.data_recovery.done.title": "Przywrócono",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Usunąć wszystkie kopie zapasowe (%s)?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "To usunie wszystkie kopie zapasowe z obu miejsc, w których są trzymane:\n%s\noraz\n%s\n\nTwoje zapisane dane pozostaną nietknięte. Tego nie da się cofnąć.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "To usunie wszystkie kopie zapasowe z:\n%s\n\nTwoje zapisane dane pozostaną nietknięte. Tego nie da się cofnąć.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Usuń kopie",
-  "command.dungeonbackup.name_mod": "Podaj moda, którego to dotyczy: %s",
-  "command.dungeonbackup.backup.success": "Zapisano kopię zapasową w %s (plików: %s).",
-  "command.dungeonbackup.backup.unchanged": "Nic się nie zmieniło od ostatniej kopii zapasowej.",
-  "command.dungeonbackup.backup.off": "Kopie zapasowe są wyłączone. Najpierw włącz je w Opcjach.",
-  "command.dungeonbackup.backup.fail": "Nie udało się zapisać kopii zapasowej: %s",
-  "command.dungeonbackup.restore.header": "Miejsca, z których można przywrócić twoje dane %s:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Nie znaleziono niczego, z czego dałoby się przywrócić.",
-  "command.dungeonbackup.restore.no_such": "Nie ma pozycji %1$s. Wpisz %2$s, aby zobaczyć listę.",
-  "command.dungeonbackup.restore.success": "Przywrócono plików: %s z %s.",
-  "command.dungeonbackup.restore.fail": "Przywracanie nie mogło się zakończyć: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Usuń kopie"
 }

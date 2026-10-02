@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Cartella dei backup: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Un'altra installazione con %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Ripristina",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Ripristina la prima voce dell'elenco. Aggiunge solo i file mancanti: nulla di ciò che hai ora viene modificato o cancellato. Usa %s nel gioco per sceglierne un'altra.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Ripristina la prima voce dell'elenco. Aggiunge solo i file mancanti: nulla di ciò che hai ora viene modificato o cancellato.",
   "gui.dungeonbackup.data_recovery.later": "Non ora",
   "gui.dungeonbackup.data_recovery.never": "Non chiedere",
   "gui.dungeonbackup.data_recovery.done.title": "Ripristinato",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Cancellare tutti i %s backup?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Questo rimuove tutti i backup da entrambi i posti in cui sono conservati:\n%s\ne\n%s\n\nI tuoi dati salvati non vengono toccati. L'operazione è irreversibile.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Questo rimuove tutti i backup da:\n%s\n\nI tuoi dati salvati non vengono toccati. L'operazione è irreversibile.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Cancella i backup",
-  "command.dungeonbackup.name_mod": "Indica la mod su cui agire: %s",
-  "command.dungeonbackup.backup.success": "Backup salvato in %s (%s file).",
-  "command.dungeonbackup.backup.unchanged": "Non è cambiato nulla dall'ultimo backup.",
-  "command.dungeonbackup.backup.off": "I backup sono disattivati. Attivali prima nelle Opzioni.",
-  "command.dungeonbackup.backup.fail": "Non è stato possibile scrivere il backup: %s",
-  "command.dungeonbackup.restore.header": "Da qui si possono ripristinare i tuoi dati di %s:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Non è stato trovato nulla da cui ripristinare.",
-  "command.dungeonbackup.restore.no_such": "Non esiste la voce %1$s. Esegui %2$s per vedere l'elenco.",
-  "command.dungeonbackup.restore.success": "Ripristinati %s file da %s.",
-  "command.dungeonbackup.restore.fail": "Il ripristino non è andato a buon fine: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Cancella i backup"
 }

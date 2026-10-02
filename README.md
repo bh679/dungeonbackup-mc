@@ -16,8 +16,9 @@ where it was built against real player support incidents:
   a delete-and-reinstall can't reach.
 - **Recovery** — an install that looks factory-fresh but shouldn't gets a title-screen card
   listing every place its data still exists (own backups, off-instance mirror, sibling instance
-  folders on the same machine) and a one-click additive restore. `/dungeonbackup restore` does
-  the same in-game.
+  folders on the same machine) and a one-click additive restore. A consumer can suppress the
+  card and restore by itself instead. There are no commands: backups and restores are never run
+  by a player.
 - **Settings** — one client config (`dungeonbackup-client.toml`) for every consumer, an
   Options widget set you can host in your own screen, and `-Ddungeonbackup.backups=off` for
   dedicated servers.

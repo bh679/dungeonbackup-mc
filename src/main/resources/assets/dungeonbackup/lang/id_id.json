@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Folder cadangan: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Instalasi lain dengan %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Pulihkan",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Memulihkan entri pertama dalam daftar. Hanya menambahkan berkas yang hilang — tidak ada yang kamu punya sekarang diubah atau dihapus. Gunakan %s di dalam game untuk memilih yang lain.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Memulihkan entri pertama dalam daftar. Hanya menambahkan berkas yang hilang — tidak ada yang kamu punya sekarang diubah atau dihapus.",
   "gui.dungeonbackup.data_recovery.later": "Nanti saja",
   "gui.dungeonbackup.data_recovery.never": "Jangan tanya",
   "gui.dungeonbackup.data_recovery.done.title": "Dipulihkan",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Hapus semua %s cadangan?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Ini menghapus setiap cadangan dari kedua tempat penyimpanannya:\n%s\ndan\n%s\n\nData tersimpanmu tidak terpengaruh. Ini tidak bisa dibatalkan.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Ini menghapus setiap cadangan dari:\n%s\n\nData tersimpanmu tidak terpengaruh. Ini tidak bisa dibatalkan.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Hapus cadangan",
-  "command.dungeonbackup.name_mod": "Sebutkan mod yang dimaksud: %s",
-  "command.dungeonbackup.backup.success": "Dicadangkan ke %s (%s berkas).",
-  "command.dungeonbackup.backup.unchanged": "Tidak ada yang berubah sejak cadangan terakhir.",
-  "command.dungeonbackup.backup.off": "Cadangan dimatikan. Nyalakan dulu di Opsi.",
-  "command.dungeonbackup.backup.fail": "Tidak bisa menulis cadangan: %s",
-  "command.dungeonbackup.restore.header": "Tempat data %s milikmu bisa dipulihkan:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Tak ditemukan apa pun untuk dipulihkan.",
-  "command.dungeonbackup.restore.no_such": "Tidak ada entri %1$s. Jalankan %2$s untuk melihat daftarnya.",
-  "command.dungeonbackup.restore.success": "Memulihkan %s berkas dari %s.",
-  "command.dungeonbackup.restore.fail": "Pemulihan tidak bisa diselesaikan: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Hapus cadangan"
 }

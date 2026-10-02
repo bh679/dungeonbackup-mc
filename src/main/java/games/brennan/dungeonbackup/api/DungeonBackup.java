@@ -77,7 +77,7 @@ public final class DungeonBackup {
 
     /**
      * Write a restore point of {@code modId}'s data right now, on the calling thread, honouring
-     * the mode and mirroring outside the instance. For commands. Empty result when the mode is OFF.
+     * the mode and mirroring outside the instance. Empty result when the mode is OFF.
      */
     public static Optional<BackupArchiver.Result> backupNow(String modId, String reason) throws IOException {
         Registration registration = registration(modId).orElseThrow(

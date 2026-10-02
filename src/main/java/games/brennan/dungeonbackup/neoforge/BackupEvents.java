@@ -4,7 +4,6 @@ import games.brennan.dungeonbackup.DungeonBackupMod;
 import games.brennan.dungeonbackup.api.DungeonBackup;
 import games.brennan.dungeonbackup.api.Registration;
 import games.brennan.dungeonbackup.api.Trigger;
-import games.brennan.dungeonbackup.command.BackupCommands;
 import games.brennan.dungeonbackup.core.BackupScheduler;
 import games.brennan.dungeonbackup.core.DataMigration;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,7 +11,6 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -31,11 +29,6 @@ public final class BackupEvents {
     private static volatile boolean backedUpThisLoad = false;
 
     private BackupEvents() {}
-
-    @SubscribeEvent
-    public static void onRegisterCommands(RegisterCommandsEvent event) {
-        BackupCommands.register(event.getDispatcher());
-    }
 
     /**
      * Migrate every registration's data out of {@code config/}. {@code HIGHEST} so a consumer's

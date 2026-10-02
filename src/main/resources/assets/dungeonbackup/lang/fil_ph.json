@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "Folder ng backup: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "Ibang install na may %s: %s",
   "gui.dungeonbackup.data_recovery.restore": "Ibalik",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "Ibinabalik ang unang nakalistang entry. Ang mga nawawalang file lang ang idinadagdag — walang binabago o binubura sa mayroon ka na. Gamitin ang %s sa loob ng laro para pumili ng iba.",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "Ibinabalik ang unang nakalistang entry. Ang mga nawawalang file lang ang idinadagdag — walang binabago o binubura sa mayroon ka na.",
   "gui.dungeonbackup.data_recovery.later": "Hindi ngayon",
   "gui.dungeonbackup.data_recovery.never": "Huwag nang magtanong",
   "gui.dungeonbackup.data_recovery.done.title": "Naibalik na",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "Burahin lahat ng %s na backup?",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "Inaalis nito ang bawat backup sa dalawang lugar na pinagtataguan ng mga ito:\n%s\nat\n%s\n\nHindi apektado ang naka-save na data mo. Hindi ito mababawi.",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "Inaalis nito ang bawat backup mula sa:\n%s\n\nHindi apektado ang naka-save na data mo. Hindi ito mababawi.",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Burahin ang mga backup",
-  "command.dungeonbackup.name_mod": "Pangalanan ang mod na gagawan nito: %s",
-  "command.dungeonbackup.backup.success": "Na-back up sa %s (%s na file).",
-  "command.dungeonbackup.backup.unchanged": "Walang nagbago mula noong huling backup.",
-  "command.dungeonbackup.backup.off": "Naka-off ang mga backup. I-on muna ang mga ito sa Options.",
-  "command.dungeonbackup.backup.fail": "Hindi maisulat ang backup: %s",
-  "command.dungeonbackup.restore.header": "Mga lugar na puwedeng pagbalikan ng data ng %s mo:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "Walang nakitang mapagbabalikan.",
-  "command.dungeonbackup.restore.no_such": "Walang entry %1$s. Patakbuhin ang %2$s para makita ang listahan.",
-  "command.dungeonbackup.restore.success": "Naibalik ang %s na file mula sa %s.",
-  "command.dungeonbackup.restore.fail": "Hindi natapos ang pagbabalik: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "Burahin ang mga backup"
 }

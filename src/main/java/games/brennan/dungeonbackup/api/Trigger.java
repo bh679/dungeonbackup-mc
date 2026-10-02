@@ -2,8 +2,7 @@ package games.brennan.dungeonbackup.api;
 
 /**
  * The automatic moments a restore point can be taken at. A consumer picks the subset it wants;
- * manual requests ({@link DungeonBackup#requestBackup}) and the in-game command are always
- * available regardless.
+ * a consumer's own requests ({@link DungeonBackup#requestBackup}) are always available regardless.
  */
 public enum Trigger {
     /** {@code ServerStartedEvent} — once per world load. */

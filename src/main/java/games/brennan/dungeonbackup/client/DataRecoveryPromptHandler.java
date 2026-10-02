@@ -119,8 +119,7 @@ public final class DataRecoveryPromptHandler {
         try {
             // A consumer's dev builds routinely have an empty data root — a branch switch, a wiped
             // run/ folder — which is the exact signature of a player who lost everything, so the
-            // consumer can suppress the unprompted card. The scan and the restore command still
-            // work: the command is asked for, and only the card is noise.
+            // consumer can suppress the unprompted card (and may then restore by itself).
             if (registration.promptSuppressed()) {
                 LOGGER.debug("[DungeonBackup] {}: prompt suppressed by the consumer.", registration.modId());
                 return List.of();

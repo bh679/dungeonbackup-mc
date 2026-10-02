@@ -10,7 +10,7 @@
   "gui.dungeonbackup.data_recovery.candidate.folder": "バックアップフォルダー: %s",
   "gui.dungeonbackup.data_recovery.candidate.sibling": "%s がある別のインストール: %s",
   "gui.dungeonbackup.data_recovery.restore": "復元",
-  "gui.dungeonbackup.data_recovery.restore.tooltip": "一覧の最初の項目から復元します。足りないファイルを追加するだけで、今あるものは変更も削除もされません。別の項目を選ぶには、ゲーム内で %s を使ってください。",
+  "gui.dungeonbackup.data_recovery.restore.tooltip": "一覧の最初の項目から復元します。足りないファイルを追加するだけで、今あるものは変更も削除もされません。",
   "gui.dungeonbackup.data_recovery.later": "後で",
   "gui.dungeonbackup.data_recovery.never": "尋ねない",
   "gui.dungeonbackup.data_recovery.done.title": "復元しました",
@@ -35,16 +35,5 @@
   "gui.dungeonbackup.options.clear_backups.confirm.title": "%s 個のバックアップをすべて削除しますか？",
   "gui.dungeonbackup.options.clear_backups.confirm.both": "バックアップが置かれている次の両方の場所から、すべて削除します:\n%s\nと\n%s\n\n保存データには影響しません。取り消しはできません。",
   "gui.dungeonbackup.options.clear_backups.confirm.one": "次の場所から、バックアップをすべて削除します:\n%s\n\n保存データには影響しません。取り消しはできません。",
-  "gui.dungeonbackup.options.clear_backups.confirm.yes": "バックアップを削除",
-  "command.dungeonbackup.name_mod": "対象の Mod を指定してください: %s",
-  "command.dungeonbackup.backup.success": "%s にバックアップしました（%s 個のファイル）。",
-  "command.dungeonbackup.backup.unchanged": "前回のバックアップから変わったものはありません。",
-  "command.dungeonbackup.backup.off": "バックアップはオフになっています。まず設定でオンにしてください。",
-  "command.dungeonbackup.backup.fail": "バックアップを書き込めませんでした: %s",
-  "command.dungeonbackup.restore.header": "%s のデータを復元できる場所:",
-  "command.dungeonbackup.restore.entry": "%s. %s — %s",
-  "command.dungeonbackup.restore.none": "復元できるものが見つかりませんでした。",
-  "command.dungeonbackup.restore.no_such": "%1$s という項目はありません。%2$s を実行すると一覧が見られます。",
-  "command.dungeonbackup.restore.success": "%s 個のファイルを %s から復元しました。",
-  "command.dungeonbackup.restore.fail": "復元を完了できませんでした: %s"
+  "gui.dungeonbackup.options.clear_backups.confirm.yes": "バックアップを削除"
 }
